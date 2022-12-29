@@ -207,12 +207,18 @@ taos --dump-config
 在 Linux/macOS 中，客户端会自动读取系统设置的时区信息。用户也可以采用多种方式在配置文件设置时区。例如：
 
 ```
-timezone UTC-8
-timezone GMT-8
+timezone UTC-8（POSIX 标准）
 timezone Asia/Shanghai
 ```
 
-均是合法的设置东八区时区的格式。但需注意，Windows 下并不支持 `timezone Asia/Shanghai` 这样的写法，而必须写成 `timezone UTC-8`。
+均是合法的设置东八区时区的格式。
+
+在 Windows中，客户端会同样会自动读取系统设置的时区信息。用户也可以采用多种方式在配置文件设置时区。例如：
+
+```
+timezone UTC+8（ISO 8601标准）
+timezone Asia/Shanghai
+```
 
 时区的设置对于查询和写入 SQL 语句中非 Unix 时间戳的内容（时间戳字符串、关键词 now 的解析）产生影响。例如：
 
